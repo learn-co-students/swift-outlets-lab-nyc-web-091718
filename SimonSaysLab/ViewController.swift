@@ -16,8 +16,34 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func tapRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        checkIfGameWon()
+    }
+    @IBAction func tapGreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        checkIfGameWon()
+    }
+    @IBAction func tapYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        checkIfGameWon()
+    }
+    @IBAction func tapBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        checkIfGameWon()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    func checkIfGameWon(){
+        buttonsClicked = buttonsClicked + 1
+        if simonSaysGame.wonGame() && buttonsClicked==5 {
+            winLabel.text =  "You win"
+        }else if !simonSaysGame.wonGame() && buttonsClicked==5{
+            winLabel.text = "You Lose!"
+        }else{
+            winLabel.text="Playing..."
+        }
     }
 }
 
